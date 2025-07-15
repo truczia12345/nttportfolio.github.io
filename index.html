@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nguyễn Tam Trực | PHP Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --light-gray: #f1f5f9;
+            --gray: #64748b;
+            --success: #10b981;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--darker);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 17px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+        }
+        
+        .hero-img {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border: 15px solid var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        .hero-img img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            color: var(--gray);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        /* About */
+        .about-content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+        
+        .about-content p {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-category h3 i {
+            background: rgba(37, 99, 235, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-item {
+            background: var(--light-gray);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .skill-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .project-info {
+            padding: 30px;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-info p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .project-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+        
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(135deg, var(--darker), #0c1424);
+            color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            padding: 60px 0 60px 40px;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .contact-info p {
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 50px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 60px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            margin: 60px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-gray);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .copyright {
+            color: #94a3b8;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 140px 0 60px;
+            }
+            
+            .hero-content {
+                margin-top: 50px;
+            }
+            
+            .hero-img img {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                padding: 40px 20px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                gap: 30px;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .skill-category {
+                padding: 25px;
+            }
+            
+            .contact-form {
+                padding: 40px 20px;
+                margin: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">Tam<span>Trực</span></div>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#skills">Kỹ năng</a></li>
+                    <li><a href="#projects">Dự án</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="hero-content">
+                <h1>Xin chào, tôi là <span>Nguyễn Tam Trực</span></h1>
+                <p class="tagline">PHP & Laravel Developer</p>
+                <p>Lập trình viên PHP chuyên nghiệp với kinh nghiệm phát triển các ứng dụng web từ cơ bản đến nâng cao. Tôi tập trung vào việc xây dựng các giải pháp hiệu quả, mã nguồn sạch sẽ và dễ bảo trì. Luôn cập nhật các công nghệ mới nhất để mang lại trải nghiệm tốt nhất cho người dùng.</p>
+                <div class="btn-container">
+                    <a href="#projects" class="btn">Xem dự án</a>
+                    <a href="#contact" class="btn btn-outline">Liên hệ ngay</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="img/vBz511bSfyYs4zUECccS_667f97d240721_cvtpl.jpg" alt="Nguyễn Tam Trực">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Về Tôi</h2>
+            <div class="about-content">
+                <p>Tôi là một PHP Developer đam mê với việc xây dựng các ứng dụng web chất lượng cao. Với nền tảng vững chắc về PHP, đặc biệt là framework Laravel, tôi có khả năng phát triển các hệ thống từ đơn giản đến phức tạp một cách hiệu quả.</p>
+                <p>Ngoài lập trình, tôi còn có kinh nghiệm trong Digital Marketing và quản trị mạng, giúp tôi có cái nhìn toàn diện về việc phát triển sản phẩm từ khâu ý tưởng đến triển khai thực tế. Tôi luôn tìm kiếm những thách thức mới để nâng cao kỹ năng và đóng góp giá trị cho tổ chức.</p>
+                <p>Mục tiêu của tôi là trở thành một Full-stack Developer chuyên nghiệp, có thể đảm nhiệm cả front-end lẫn back-end, mang lại giải pháp tổng thể cho các vấn đề phức tạp.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Kỹ Năng</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Phát triển Web</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">HTML5</div>
+                        <div class="skill-item">CSS3</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">PHP</div>
+                        <div class="skill-item">Laravel</div>
+                        <div class="skill-item">Node.js</div>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">RESTful API</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-bullhorn"></i> Digital Marketing</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">SEO</div>
+                        <div class="skill-item">Google Ads</div>
+                        <div class="skill-item">Facebook Ads</div>
+                        <div class="skill-item">Content Marketing</div>
+                        <div class="skill-item">Google Analytics</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i> Mạng & Hạ tầng</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Mạng máy tính</div>
+                        <div class="skill-item">Quản trị mạng</div>
+                        <div class="skill-item">Bảo mật hệ thống</div>
+                        <div class="skill-item">Cấu hình máy chủ</div>
+                        <div class="skill-item">Cấu hình mạng/camera</div>
+                        <div class="skill-item">Linux</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Dự Án Tiêu Biểu</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://lh3.googleusercontent.com/KnMTcocaOglwXOAI2gScV5IONno6bFRGH7-lhGgrP2nd0kQ-1RP10QX53bYpp4eOfjYdq7ds-r7e8bIK2nECUfwaVwJp9m0C=rw-w765" alt="ShopBook">
+                        <div class="project-badge">Node.js</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>ShopBook - Website bán sách</h3>
+                        <p>Website thương mại điện tử chuyên về sách với đầy đủ tính năng: quản lý sản phẩm, giỏ hàng, thanh toán, đánh giá sản phẩm. Hệ thống phân quyền người dùng và quản trị viên được thiết kế chặt chẽ.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/truczia12345/ShopBook" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://lh3.googleusercontent.com/_3J7DYNvQFlkg6ardSAkjbuNQn6Rt28EnVDQJE783RxJSRM44BMSKIHnwvtcnnEtTUWB0U8pYyO0HBfLVPZzCLiw_roYXc_b=rw-w765" alt="NikkiNews">
+                        <div class="project-badge">Laravel</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>NikkiNews - Website tin tức</h3>
+                        <p>Hệ thống tin tức trực tuyến với giao diện hiện đại, tốc độ tải nhanh. Tính năng nổi bật: phân loại tin theo chuyên mục, tìm kiếm thông minh, bình luận bài viết, quản lý người dùng và bài đăng từ CMS.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/truczia12345/NikkiNews" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="https://lh3.googleusercontent.com/SynvANEfEiE1HZ7lzrxnXQNA6Ceh6grApiNEX-cjPh0cK_CSHYc0CtvyHKQCAeGl02WAZkJbiaynvBmVDC7ndMg7o5bDPSw=rw-w765" alt="NuenTaruShop">
+                        <div class="project-badge">Laravel</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>NuenTaruShop - Thương mại điện tử</h3>
+                        <p>Website thương mại điện tử đa ngành hàng với hệ thống quản lý đơn hàng, kho hàng, khuyến mãi phức tạp. Tích hợp cổng thanh toán trực tuyến, hệ thống đánh giá sản phẩm và gợi ý sản phẩm dựa trên hành vi người dùng.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/truczia12345/NuenTaruShop" class="project-link" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Liên hệ với tôi</h2>
+                <p>Bạn có dự án cần phát triển? Hãy liên hệ với tôi qua thông tin dưới đây hoặc điền vào form bên cạnh. Tôi sẽ phản hồi trong thời gian sớm nhất!</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <a href="mailto:trucnt.tuco@gmail.com">trucnt.tuco@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Điện thoại</h3>
+                            <a href="tel:+84964758700">+84 964 758 700</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/tam-tr%E1%BB%B1c-nguy%E1%BB%85n-393ab025b/" target="_blank">linkedin.com/in/tam-trực-nguyễn</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Facebook</h3>
+                            <a href="https://fb.com/trucnguyen19" target="_blank">fb.com/trucnguyen19</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://fb.com/trucnguyen19" class="social-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://github.com/truczia12345" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/tam-tr%E1%BB%B1c-nguy%E1%BB%85n-393ab025b/" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" class="form-control" placeholder="Nhập họ tên của bạn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Nhập email của bạn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Nội dung</label>
+                        <textarea id="message" class="form-control" placeholder="Mô tả dự án hoặc nội dung bạn muốn trao đổi" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Nguyễn Tam Trực</div>
+                <p>PHP & Laravel Developer | Digital Marketing Specialist</p>
+                <p class="copyright">© 2023 Nguyễn Tam Trực. Bản quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                // Show success message
+                alert(`Cảm ơn ${name} đã liên hệ! Tôi sẽ phản hồi đến ${email} trong thời gian sớm nhất.`);
+                
+                // Reset form
+                contactForm.reset();
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc (Họ tên và Email).');
+            }
+        });
+        
+        // Initialize - add scrolled class if page is scrolled on load
+        window.addEventListener('load', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
